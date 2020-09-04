@@ -1,4 +1,9 @@
-body { 
-    padding-top: 65px; 
-    
+html {
+    height:100%;
+}
+
+
+body {
+    padding-top:65px;
+    color:red;
 }
