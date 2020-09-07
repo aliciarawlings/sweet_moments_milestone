@@ -11,3 +11,18 @@ body {
     color: black;
     width: 100vw;
 }
+
+.overlay {
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    position:fixed;
+    background:white;
+    z-index:-1;
+}
+
+.img-size {
+    width:350px;
+    height:300px;
+}

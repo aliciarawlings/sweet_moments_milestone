@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Product, Category, Order
+from .models import Products, Category, Order
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductsAdmin(admin.ModelAdmin):
     list_display = (
         'sku',
         'name',
@@ -13,6 +13,6 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ('sku',)
 
 
-admin.site.register(Product, ProductAdmin)
+admin.site.register(Products, ProductsAdmin)
 admin.site.register(Category)
 admin.site.register(Order)
