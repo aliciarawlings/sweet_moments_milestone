@@ -15,8 +15,7 @@ def all_products(request):
 			category = request.GET['category']
 			products = products.filter(category__flavour=category)
 			categories = Category.objects.filter(flavour=category)
-			print (products.all())
-			print (request.GET['category'])
+			
 		elif request.GET['q']:
 			query = request.GET['q']
 			if not query:
