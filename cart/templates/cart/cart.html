@@ -42,11 +42,14 @@
                 <td><img class="img-fluid cart-img-size" src="{{ items.product.image.url }}">
                 </td>
                  <td>
-                    <p><strong>{{items.product.quantity}}</strong></p>
-                    <input type="number" id="product_qty" name="product_qty" min="1" max="5">
+                    <form class="form update-form" action="" method= "POST">
+                        {% csrf_token %}
+                        <input class="form-control qty_input" type="number" name="quantity" value="{{ items.quantity}}" min="1" max="99" data-item_id ="{{items.item_id}}" id="id_qty_{{items.item_id}}">
+                        </form>
                 </td>
                 <td class="text-right">£{{items.product.price}}</td>
-                 <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                
+                 <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Remove </button> </td>
              <td>
                 <h5 class="m-5 pb-5"> Sub Total:£{{total|floatformat:2}}</h5>
             </td>
