@@ -23,6 +23,16 @@ body {
 }
 
 .img-size {
-    width:280px;
+    width:300px;
     height:250px;
+}
+
+.descrip-img-size {
+    width:400px;
+    height:400px;
+}
+
+.cart-img-size{
+    width:200px;
+    height:200px;
 }

@@ -13,33 +13,76 @@
 
 {% block content %}
 <div class="overlay"></div>
-<div class="container">
+<div class="container mt-5">
 <div class="row">
     <div class="col">
-    <h3>Your Cart</h3>
+    <h1 class="mt-5">Shopping Cart</h1>
     </div>  
 </div>
+
+
+
 <div class="row">
-    <div class="col">
-    {% if cart_items %}
-     <table class="table-responsive">
-        <thead>
-            <tr>
-            <th scope="col">#</th>
-            <th scope ="col">Item</th>
-            <th scope="col">QTY</th>
-            <th scope="col">Price</th>
-            </tr>
+    <div class="col"> 
+{% if items %}
+     <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-right">Price</th>
+                    <th></th>
+             </tr>
         </thead>
+          
+            {% for items in items %}
+            
+                <tr>
+                <td><img class="img-fluid cart-img-size" src="{{ items.product.image.url }}">
+                </td>
+                 <td>
+                    <p><strong>{{items.product.quantity}}</strong></p>
+                    <input type="number" id="product_qty" name="product_qty" min="1" max="5">
+                </td>
+                <td class="text-right">£{{items.product.price}}</td>
+                 <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+             <td>
+                <h5 class="m-5 pb-5"> Sub Total:£{{total|floatformat:2}}</h5>
+            </td>
+          </tr>
+        {% endfor %}
+         <tr>
+            <td class="text-right">
+                <a href="{% url 'products' %}" class="btn btn-outlinw-black rounded-0 btn-lg">
+                <span class="text-uppercase">Keep Shopping</span>
+                </a>
+            <a href="" class="btn btn-black rounded-0 btn-lg">
+                <span class="text-uppercase">Secure Checkout</span>
+                <span class="icon">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </a>
+            </td>
+            </tr>
+    </table>
+    
     {% else %}
-        <p>Your bag is empty </p>
-        <a href="{% url 'products'%}" class="btn btn-outline-black btn-lg"></a>
-    {% endif %}     
+        <p class="lead">Your bag is empty </p>
+        <a href="{% url 'products'%}" class="btn  btn-outline-dark btn-lg">Return To Shopping</a>
+    {% endif %}   
 
-    </div>
+ </div>
+ </div>
+ </div>
 
-</div>
-</div>
+
+
+   
+       
+      
+
+
 
 
 

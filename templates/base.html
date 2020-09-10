@@ -69,6 +69,16 @@
     </ul>
       <a class="navbar-brand mx-auto navbar-logo" href="{% url 'home' %}">
     </a>
+
+    <div class ="d-flex justify-content-center">
+  <form method="GET" action="{% url 'products' %}" class="form-inline my-2 my-lg-0">
+  <div class = "input-group w-100">
+      <input class="form-control mr-sm-2 text-al" type="search" placeholder="Search" aria-label="Search" name="q">
+      <div class="input-group-append">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </div>
+    </div>
+    </form>
   
   </div>
   <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
@@ -102,18 +112,11 @@
     </li>
 </ul>
 </div>
+
     
 
 </nav> 
-<div class ="d-flex justify-content-center">
-  <form method="GET" action="{% url 'products' %}" class="form-inline my-2 my-lg-0">
-  <div class = "input-group w-100">
-      <input class="form-control mr-sm-2 text-al" type="search" placeholder="Search" aria-label="Search" name="q">
-      <div class="input-group-append">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </div>
-    </div>
-    </form>
+
     </div>
  </header>
 
