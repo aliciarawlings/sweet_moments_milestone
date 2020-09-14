@@ -31,25 +31,32 @@
                 <tr>
                     <th scope="col">Product</th>
                     <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-right">Update</th>
                     <th scope="col" class="text-right">Price</th>
+                  
                     <th></th>
              </tr>
         </thead>
           
-            {% for items in items %}
+            {% for item in items %}
             
                 <tr>
-                <td><img class="img-fluid cart-img-size" src="{{ items.product.image.url }}">
+                <td><img class="img-fluid cart-img-size" src="{{ item.product.image.url }}">
                 </td>
-                 <td>
-                    <form class="form update-form" action="" method= "POST">
+                <td>
+                 
+                    <form class="form update-form" action="{% url 'update_cart' item.product.id %}" method= "POST">
                         {% csrf_token %}
-                        <input class="form-control qty_input" type="number" name="quantity" value="{{ items.quantity}}" min="1" max="99" data-item_id ="{{items.item_id}}" id="id_qty_{{items.item_id}}">
-                        </form>
+                        <input class="form-control qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item_id ="{{item.item_id}}" id="id_qty_{{item.item_id}}">
+                        <td class="update_cart text-right">
+                            <button class="btn btn-sm btn-success" id="update_{{item.item_id}}"><i class="fa fa-refresh"></i></button>
+                        </td>
+                    </form>
                 </td>
-                <td class="text-right">£{{items.product.price}}</td>
+
+                <td class="text-right">£{{item.product.price}}</td>
                 
-                 <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Remove </button> </td>
+                 <td class="text-right"><button class="btn btn-sm btn-danger" id ="remove_{{item.item_id}}"><i class="fa fa-trash"></i> Remove </button> </td>
              <td>
                 <h5 class="m-5 pb-5"> Sub Total:£{{total|floatformat:2}}</h5>
             </td>
