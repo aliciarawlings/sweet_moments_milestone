@@ -34,6 +34,13 @@
         {% csrf_token %}
         <div class="form-row">
         <div class="col">
+        <select name="weight">
+            <option value="">Choose Weight</option>
+            {% for k,v in quantities %}
+                <option value="{{v}}"> {{k}}</option> 
+            {% endfor %}
+        </select>
+      
         <p class="mt-3"><strong>Quantity:</strong></p>
         <div class="form-group w-50">
             <div class="input-group">
