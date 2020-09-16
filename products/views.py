@@ -27,6 +27,7 @@ def all_products(request):
         'products': products,
         'search' : query,
         'sweet_categories': categories, 
+        
     }
     return render(request, 'products/products.html', context)
 
@@ -35,9 +36,11 @@ def product_detail(request, products_id):
     """ A view to show product details """
 
     product = get_object_or_404(Products, pk=products_id)
+    quantities = product.QUANTITY_CHOICES
 
     context = {
-    'product': product,
+        'product': product,
+        'quantities': quantities
     }
     return render(request, 'products/product_detail.html', context)
 
