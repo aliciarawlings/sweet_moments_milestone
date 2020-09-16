@@ -15,6 +15,15 @@ class Category(models.Model):
 class Products(models.Model):
     class Meta:
         verbose_name_plural = "Products"
+    QUANTITY_CHOICES = [
+        ('500g', 0.5),
+        ('1kg', 1),
+        ('1.5kg', 1.5),
+        ('2kg', 2),
+    ]
+
+    quantity = models.DecimalField(choices=QUANTITY_CHOICES,
+     default=0.5, decimal_places= 2, max_digits=6)
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=250, null=True)
     name = models.CharField(max_length=250)
@@ -27,15 +36,5 @@ class Products(models.Model):
         return self.name
 
 
-class Order(models.Model):
-    
-    QUANTITY_CHOICES = [
-        ('500g', 0.5),
-        ('1kg', 1),
-        ('1.5kg', 1.5),
-        ('2kg', 2),
-    ]
-    
-    product = models.ForeignKey('Products', null=True, on_delete=models.SET_NULL)
-    quantity = models.DecimalField(choices=QUANTITY_CHOICES, default=0.5, decimal_places=2, max_digits=6)
+
   
