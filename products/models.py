@@ -5,9 +5,9 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    name = models.CharField(max_length=250, null=True)
-    flavour = models.CharField(max_length=250)    
-    
+    name = models.CharField(max_length=250)
+    flavour = models.CharField(max_length=250)
+
     def __str__(self):
         return self.flavour
 
@@ -15,15 +15,15 @@ class Category(models.Model):
 class Products(models.Model):
     class Meta:
         verbose_name_plural = "Products"
-    QUANTITY_CHOICES = [
-        ('500g', 0.5),
-        ('1kg', 1),
-        ('1.5kg', 1.5),
-        ('2kg', 2),
-    ]
 
-    quantity = models.DecimalField(choices=QUANTITY_CHOICES,
-     default=0.5, decimal_places= 2, max_digits=6)
+    QUANTITY_CHOICES = {
+        (0.5, '500g'),
+        (1, '1kg'),
+        (1.5, '1.5kg'),
+        (2, '2kg')
+    }
+
+    quantity = models.DecimalField(choices=QUANTITY_CHOICES, default=0.5, decimal_places= 2, max_digits=6)
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=250, null=True)
     name = models.CharField(max_length=250)

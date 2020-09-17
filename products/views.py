@@ -34,10 +34,10 @@ def all_products(request):
 
 def product_detail(request, products_id):
     """ A view to show product details """
-
+    
     product = get_object_or_404(Products, pk=products_id)
     quantities = product.QUANTITY_CHOICES
-
+    
     context = {
         'product': product,
         'quantities': quantities

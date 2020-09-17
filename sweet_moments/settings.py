@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'home',
     'products',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -177,5 +178,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-FREE_DELIVERY = 30
 STANDARD_DELIVERY = 10
+
+

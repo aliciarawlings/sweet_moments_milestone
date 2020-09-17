@@ -120,18 +120,18 @@
    
  </header>
 
-    {% block page_header %}
-    {% endblock %}
-   
+{% block page_header %}
+{% endblock %}
 
-    {% block content %}
-    {% endblock %}
 
-    {% block postloadjs %}
-    <script src="{% static 'script/script.js'%}"></script>
-    {% endblock %}
+{% block content %}
+{% endblock %}
 
-    
-  
+{% block postloadjs %}
+<script src="{% static 'script/script.js'%}"></script>
+{% endblock %}
+
+
+
   </body>
 </html>
