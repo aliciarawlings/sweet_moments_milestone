@@ -120,6 +120,15 @@
    
  </header>
 
+{% if messages %}
+<div class="container">
+    {% for message in messages %}
+     {% include 'includes/messages/message_success.html' %}
+    {% endfor %}
+</div>
+{% endif %}
+
+
 {% block page_header %}
 {% endblock %}
 

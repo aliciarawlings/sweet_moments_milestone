@@ -36,3 +36,14 @@ body {
     width:200px;
     height:200px;
 }
+
+.home_font{
+    font-family: 'Playfair Display', serif;
+    font-weight:10px;
+    color:#f78487;
+
+}
+
+.nav-link{
+  color:#f78487;!important;
+  }

@@ -15,11 +15,11 @@ class Order(models.Model):
     address_1 = models.CharField(max_length=4, null=False, blank=False)
     address_2 = models.CharField(max_length=4, null=False, blank=False)
     date = models.DateField(auto_now_add=True)
-    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null= False, default=0)
+    grand_total = models.DecimalField(editable=False, max_digits=10, decimal_places=2, null= False, default=0)
 
     
 class OrderItem(models.Model):
-    cart_item = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order_number = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Products, null=False, blank=False, on_delete= models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     order_item_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank= False)

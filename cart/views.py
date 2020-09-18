@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 
 
 def cart(request):
     """ returns shopping cart page """
     return render(request, 'cart/cart.html')
 
-# selected_items = [item for item in cart if item[0] == selected_item_id]
 
 def update_cart(request, selected_item_id):
     quantity = int(request.POST.get('quantity'))
@@ -21,19 +21,17 @@ def update_cart(request, selected_item_id):
                 if quantity == 0 or remove:
                     del cart[index]
                 else:
+                    messages.success(request, "Item Added To Your Cart!")
                     cart[index] = (item_id, item_weight, quantity)
+                    
             else:
+                messages.success(request, "Item Added To Your Cart!")
                 cart.append((selected_item_id, weight, quantity))
     else:
+        messages.success(request, "Item Added To Your Cart!")
         cart.append((selected_item_id, weight, quantity))
-
+        
     request.session['cart'] = cart
     if redirect_url:
         return redirect(redirect_url)
     return redirect(reverse('cart'))
-
-# def delete_cart_item(request, item_id):
-#     cart = request.session.get('cart', {})
-#     item_id = get_object_or_404(Product, id=product_id)
-#     cart.remove(item_id)
-#     return redirect(reverse('cart'))

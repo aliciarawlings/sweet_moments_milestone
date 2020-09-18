@@ -1,7 +1,7 @@
-//update cart quantity
-$('.update_cart').click(function(e){
-    var form = $(this).prev('.update-form');
-})
+//show messages 
+$(document).ready(function(){
+  $('.toast').toast('show');
+});
 
 
-//remove cart quantity
+
