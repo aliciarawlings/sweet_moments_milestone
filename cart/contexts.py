@@ -6,6 +6,7 @@ def cart_items(request):
     items = []
     total = 0
     product_count = 0
+    delivery = 00.3
 
     weights = Products.QUANTITY_CHOICES
     cart = request.session.get('cart', [])
@@ -14,7 +15,7 @@ def cart_items(request):
         product = get_object_or_404(Products, pk=item_id)
         weight_price = float(weight) * float(product.price)
         subtotal = float(quantity) * weight_price
-        total += subtotal
+        total += subtotal + delivery
         product_count += quantity
         for w in weights:
             if w[0] == weight:
@@ -35,6 +36,7 @@ def cart_items(request):
         'items': items,
         'total': total,
         'product_count': product_count,
+        'delivery': delivery
     }
 
     return context

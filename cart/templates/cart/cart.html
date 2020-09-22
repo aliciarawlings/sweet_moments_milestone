@@ -82,12 +82,17 @@
                                 </td>
                             </tr>
                         {% endfor %}
+                         <aside class="col-lg-3">
+	            <div class="card mb-3">
+	                <div class="card-body">
+	                  </div>
+	            </div>
                     <tr>
                         <td class="text-right">
                             <a href="{% url 'products' %}" class="btn btn-outline-secondary rounded-0 btn-lg">
                             <span class="text-uppercase text-dark "><i class="fa fa-arrow-left" aria-hidden="true"></i>Keep Shopping</span>
                             </a>
-                            <a href="" class="btn btn-black btn-outline-secondary btn-lg  rounded-0 btn-lg">
+                            <a href="{% url 'checkout' %}" class="btn btn-black btn-outline-secondary btn-lg  rounded-0 btn-lg">
                                 <span class="text-uppercase text-dark ">Secure Checkout</span>
                                 <span class="icon">
                                     <i class="fas fa-lock"></i>
