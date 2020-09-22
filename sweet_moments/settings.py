@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os 
 import sys
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -67,7 +68,8 @@ INSTALLED_APPS = [
     'products',
     'cart',
     'checkout',
-    'coupons'
+    'coupons',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -81,6 +83,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'sweet_moments.urls'
+
+CRISPY_TEMPLATE_PACK ="bootstrap4"
 
 TEMPLATES = [
     {
@@ -98,6 +102,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'cart.contexts.cart_items',
             ],
+            'builtins':[
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
@@ -180,7 +188,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-STANDARD_DELIVERY = 10
-
-
+ 
