@@ -69,7 +69,9 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'coupons',
-    'crispy_forms'
+
+    #other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -102,7 +104,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'cart.contexts.cart_items',
             ],
-            'builtins':[
+            'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
                 'crispy_forms.templatetags.crispy_forms_field',
             ]

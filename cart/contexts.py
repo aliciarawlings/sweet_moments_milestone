@@ -6,7 +6,7 @@ def cart_items(request):
     items = []
     total = 0
     product_count = 0
-    delivery = 00.3
+    delivery = 3
 
     weights = Products.QUANTITY_CHOICES
     cart = request.session.get('cart', [])

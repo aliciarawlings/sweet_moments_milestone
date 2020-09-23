@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
+{% crispy order_form_form.helper %}
+
 
 {% block page_header %}
 <div class="container">
@@ -13,31 +16,36 @@
 
 {% block content %}
 <div class="overlay"></div>
-<div class="container mt-5">
+<div class="container">
 <div class="row">
     <div class="col">
     <h1 class="mt-5">Checkout</h1>
-    </div>  
+    
 
-    <div class ="row">
+    <div class ="row ">
     <div class="col">
-        <h3>Complete Your Order</h3>
-        <form action ="{% url 'checkout'%}"method="POST" id="checkout_form">
-        {% csrf_token %}
-        {{order_form.first_name}} | as_crispy_field }}
-
-        <span>You will be charged £{{grand_total|floatformat:2}}</span>
-        </form>
+        <h3>Complete Your Order :</h3>
+ <form action= "{% url 'checkout'%}" method = 'POST' id='checkout_form'>
+ {% csrf_token %}
+  {{order_form.first_name}}|as_crispy_field }}
+  {{order_form.second_name}}|as_crispy_field }}
+  {{order_form.email}} | as_crispy_field }}
+        {{order_form.address_1}} | as_crispy_field }}
+        {{order_form.address_2}} | as_crispy_field }}
+        {{order_form.country}} | as_crispy_field }}
+        {{order_form.county}} | as_crispy_field }}
+        {{order_form.telephone}} | as_crispy_field }}
+ </form>
+<span>You will be charged £{{grand_total|floatformat:2}}</span>
 
     </div>
  </div>
 
- <div class="col-3">
+ <div class="col">
+    <p class="my-0"><strong>Amount Of Products : </strong>{{product_count}}</p>
+    <p class="my-0"><strong>Total</strong> :£{{total | floatformat:2 }}</p>
+    <p class="my-0"><strong>Delivery</strong> £3.00</p>
     
-    {{product_count}}
-    <p class="my-0">£{{total | floatformat:2 }}</p>
-    <p class="my-0">Delivery £3.00</p>
-    <p class="my-0">£{{ grand_total | floatformat:2}}</p>
  </div>
 
 
