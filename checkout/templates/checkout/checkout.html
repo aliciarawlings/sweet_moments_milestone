@@ -28,12 +28,19 @@
  </form>
   <div class="col-lg-6">
 	                <div class="card-body">
-	                    <form action="{% url 'apply'%}" method="POST" >
-                            {% csrf_token %}
-	                        <div class="form-group"> <label>Have coupon?</label>
-	                            <div class="input-group"> <input type="text" class="form-control coupon" name="" placeholder="Coupon code"> <span class="input-group-append"> <button class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
-	                        </div>
-	                    </form>
+                        <div class="form-group"> <label>Have coupon?</label>
+                            <div class="input-group"> 
+                                <form action="{% url 'apply'%}" method="POST" >
+                                    {% csrf_token %}
+                                    <input type="text" class="form-control coupon" name="discount_code" placeholder="Coupon code">
+                                    <span class="input-group-append"> 
+                                        <button class="btn btn-primary btn-apply coupon">
+                                            Apply
+                                        </button>
+                                    </span>
+                                </form>
+                            </div>
+                        </div>
 	                </div>
  	        </div>
 
@@ -41,13 +48,15 @@
     <p class="my-0"><strong>Amount Of Products : </strong>{{product_count}}</p>
     
     <p class="my-0"><strong>Delivery</strong> £3.00</p>
-<span><h4>You will be charged </h4> {{grand_total|floatformat:2}}</span>
-<p><strong>Total</strong> :£{{total | floatformat:2 }}</p>
+<span><h4>You will be charged </h4> </span>
+<p><strong>Total</strong> :£{{total|floatformat:2}} </p>
+<p><strong>Discount</strong> :£{{discount|floatformat:2}} </p>
+<p><strong>To pay</strong> :£{{discountedTotal|floatformat:2}} </p>
+
+
+
     </div>
  </div>
-
-
-    
  </div>
  <hr>
  
