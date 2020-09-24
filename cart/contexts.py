@@ -10,7 +10,6 @@ def cart_items(request):
     
     weights = Products.QUANTITY_CHOICES
     cart = request.session.get('cart', [])
-    
 
     for (item_id, weight, quantity) in cart:
         product = get_object_or_404(Products, pk=item_id)
@@ -37,8 +36,7 @@ def cart_items(request):
         'items': items,
         'total': total,
         'product_count': product_count,
-        'delivery': delivery,
-
+        'delivery': delivery
     }
 
     return context
