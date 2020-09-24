@@ -4,6 +4,7 @@ from django.contrib import messages
 
 def cart(request):
     """ returns shopping cart page """
+
     return render(request, 'cart/cart.html')
 
 
@@ -12,7 +13,7 @@ def update_cart(request, selected_item_id):
     weight = float(request.POST.get('weight'))
     remove = request.POST.get('remove')
     redirect_url = request.POST.get('redirect_url')
-    cart = request.session.get('cart', [])
+    cart = request.session.get('cart', []) 
     
     if len(cart) > 0:
         for index, (item_id, item_weight, item_quantity) in enumerate(cart):
@@ -30,7 +31,7 @@ def update_cart(request, selected_item_id):
     else:
         messages.success(request, "Item Added To Your Cart!")
         cart.append((selected_item_id, weight, quantity))
-        
+
     request.session['cart'] = cart
    
     if redirect_url:

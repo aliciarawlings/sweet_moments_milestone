@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .forms import AddCouponForm
 from .models import Coupon
 from django.utils import timezone
@@ -17,7 +17,6 @@ def apply_coupon(request):
             request.session['coupon_id'] = coupon.id
         except Coupon.DoesNotExist:
             request.session['coupon_id'] = None
-        return redirect('cart:cart')
-    
+    return redirect(reverse('checkout'))
 
     
