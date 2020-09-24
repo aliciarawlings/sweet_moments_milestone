@@ -8,8 +8,10 @@ import uuid
 class Order(models.Model):
     order_number = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=20,null=False, blank=False)
+    second_name = models.CharField(max_length=20, null=False, blank=False)
     status = models.BooleanField(default=False)
-    email = models.CharField(max_length=32, null=False, editable=False)
+    email = models.CharField(max_length=32, null=False)
     telephone = models.CharField(max_length=20, null=False, blank=False)
     country = models.CharField(max_length=40, null=False, blank=False)
     county = models.CharField(max_length=40, null=False, blank=False)

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
-{% crispy order_form_form.helper %}
+
+
 
 
 {% block page_header %}
@@ -25,16 +25,11 @@
     <div class ="row ">
     <div class="col">
         <h3>Complete Your Order :</h3>
- <form action= "{% url 'checkout'%}" method = 'POST' id='checkout_form'>
+ <form action= "{% url 'checkout'%}" method="POST" id="checkout_form">
  {% csrf_token %}
-  {{order_form.first_name}}|as_crispy_field }}
-  {{order_form.second_name}}|as_crispy_field }}
-  {{order_form.email}} | as_crispy_field }}
-        {{order_form.address_1}} | as_crispy_field }}
-        {{order_form.address_2}} | as_crispy_field }}
-        {{order_form.country}} | as_crispy_field }}
-        {{order_form.county}} | as_crispy_field }}
-        {{order_form.telephone}} | as_crispy_field }}
+ 
+        {{order_form|crispy}}
+
  </form>
 <span>You will be charged £{{grand_total|floatformat:2}}</span>
 
@@ -47,6 +42,16 @@
     <p class="my-0"><strong>Delivery</strong> £3.00</p>
     
  </div>
+ 	        <aside class="col-lg-3">
+	            <div class="card mb-3">
+	                <div class="card-body">
+	                    <form>
+	                        <div class="form-group"> <label>Have coupon?</label>
+	                            <div class="input-group"> <input type="text" class="form-control coupon" name="" placeholder="Coupon code"> <span class="input-group-append"> <button class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
 
 
 
