@@ -76,3 +76,7 @@ body {
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+.discount{
+    background-color: red;
+}
