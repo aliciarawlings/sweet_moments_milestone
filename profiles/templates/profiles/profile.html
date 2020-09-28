@@ -9,13 +9,14 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-        <h2>My Profile</h2>
+        <h2 class="profile_container">My Profile</h2>
 		</div>
 	</div>
 </div>
 {% endblock %}
 
 {% block content %}
+<div class="container profile_container border  border-secondary">
 <div class="row">
     <div class="col-12 col-lg-6">
         <p> Delivery Information </p>
@@ -27,11 +28,12 @@
         </form>
     </div>
     <div class="col-12 col-lg-6">
+    
         <p>Default Delivery Information</p>
         {{orders}}
     </div>
 </div>
-
+</div>
 
 {% endblock %}
 

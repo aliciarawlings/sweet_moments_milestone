@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
@@ -10,6 +12,21 @@ from .models import OrderItem, Order
 
 
 import stripe
+import json
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'username': request.user,
+            'cart':json.dumps(request.session.get('cart'))
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry , your payment was not successful')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
@@ -35,7 +52,11 @@ def checkout(request):
         }
         order_form = OrderForm(form_info)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_cart = json.dumps(cart)
+            order.save()
             for (item_id, weight, quantity) in cart: #iterate to create each bag item
                 try:
                     products = get_object_or_404(Products, pk=item_id)

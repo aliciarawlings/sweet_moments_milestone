@@ -98,3 +98,12 @@ body {
     margin:0;
     height:100%;
 }
+
+.profile_container{
+    text-align:left;
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    color:black;
+   
+
+}

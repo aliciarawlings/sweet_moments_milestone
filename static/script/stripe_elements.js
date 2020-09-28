@@ -44,10 +44,44 @@ checkoutForm.addEventListener('submit', function(ev) {
     $('#submit-button').attr('disabled', true);
     $('#checkout_form').fadeToggle(100);
     $('#loading_payment').fadeToggle(100);
+
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+    }
+
+    var url = '/checkout/cache_checkout_data/';
+    $.post(url, postData).done(function *(){
+
+ 
+
     stripe.confirmCardPayment(clientSecret, { //sends info to stripe
        payment_method:{
            card:card,
-       }
+           billing_details :{
+               first_name: $.trim(form.first_name.value),
+               phone: $.trim(form.telephone.value),
+               email: $.trim(form.email.value),
+               address :{
+                   address_1: $.trim(form.address_1.value),
+                   address_2: $.trim(form.address_2.value),
+                   county: $.trim(form.county.value),
+                   country: $.trim(form.country.value),
+               }
+           }
+       },
+        shipping: {
+               first_name: $.trim(form.first_name.value),
+               phone: $.trim(form.telephone.value),
+               email: $.trim(form.email.value),
+               address :{
+                   address_1: $.trim(form.address_1.value),
+                   address_2: $.trim(form.address_2.value),
+                   county: $.trim(form.county.value),
+                   country: $.trim(form.country.value),
+                }
+        },
     }).then(function(result){
        if (result.error) {
            var errorDiv = document.getElementById('card-errors');
@@ -69,6 +103,8 @@ checkoutForm.addEventListener('submit', function(ev) {
         }
     }
    });
+}).fail(function(){
+    location.reload();
+})
 });
-
 
