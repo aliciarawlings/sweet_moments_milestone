@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'coupons',
+    'profiles',
 
     #other
     'crispy_forms',
@@ -193,5 +194,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
  
 #stripe
 STRIPE_CURRENCY = 'gbp'
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_PUBLIC_KEY = "pk_test_51HIB0uIgPE9MtcG4L1wBF3rLiVin1wscx39uHFjELOWHfd7TF0jMJhl978Sbzz84iTzgf9ntgKXDVLniGOccpyFx00xIuoHzZU"
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
