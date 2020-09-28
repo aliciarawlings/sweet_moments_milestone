@@ -42,14 +42,25 @@ checkoutForm.addEventListener('submit', function(ev) {
     ev.preventDefault(); //prevents default action (POST)
     card.update({'disabled': true}); //prevent multiple submission
     $('#submit-button').attr('disabled', true);
+    $('#checkout_form').fadeToggle(100);
+    $('#loading_payment').fadeToggle(100);
     stripe.confirmCardPayment(clientSecret, { //sends info to stripe
        payment_method:{
            card:card,
        }
     }).then(function(result){
        if (result.error) {
-           alert("error");
-           console.log(result.error)
+           var errorDiv = document.getElementById('card-errors');
+           var html = `
+           <span class="icon" role="alert">
+               <i class="fas fas-times"></i>
+           </span>
+           <span>${result.error.message}</span>
+
+           `;
+           $(errorDiv).html(html);
+           $('#checkout_form').fadeToggle(100);
+           $('#loading_payment').fadeToggle(100);
         card.update({'disabled': false}); //renable to allow user to fix it
         $('#submit-button').attr('disabled', false);
     } else {

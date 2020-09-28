@@ -80,3 +80,21 @@ body {
 .discount{
     background-color: red;
 }
+
+#loading_payment {
+    z-index :9999;
+    top:0;
+    left:0;
+    width:100%;
+    /*background:#f78487;*/
+    position:fixed;
+}
+
+
+.loading_display {
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    margin:0;
+    height:100%;
+}

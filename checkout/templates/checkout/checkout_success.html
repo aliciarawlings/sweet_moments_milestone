@@ -17,20 +17,35 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
-<div class ="row ">
-    <div class="col">
-        <h3>Thank you for your order</h3>
-        {{order.order_number}}
-        {{order.date}}
-        <hr>
-        
-    </div>
-</div>
+<article class ="card">
+<header class="card-header"> Thank You For You Order </header>
+{% for item in order.orderitems.all %}
+<div class="card-body">
+<h6>{{item.order_number}}</h6>
+<article class="card">
+    <div class="card-body row">
+    {{item.order_date}}
+    {{item.product}}
 
-<div class="row">
-    <div class="col-12 col-lg-7">
-        
+    {{order.first_name}}
+    {{order.second_name}
+    {{order.address_1}}
+
+    
     </div>
+    {% endfor %}
+</article>
+</div>
+<div id="loading_payment">
+    <h1 class="loading_display">
+    <span class="icon">
+          <i class="fas fa-spinner fa-pulse"></i>
+    </span>
+    </h1>
+    </div>
+
+
+</div>
     
 
  

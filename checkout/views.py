@@ -31,7 +31,7 @@ def checkout(request):
             'country': request.POST['country'],
             'county' : request.POST['county'],
             'telephone': request.POST['telephone'],
-            #'discount': request.POST['discount']
+            'coupon': request.POST['coupon']
         }
         order_form = OrderForm(form_info)
         if order_form.is_valid():
@@ -43,6 +43,7 @@ def checkout(request):
                         order=order,
                         products=products,
                         quantity=quantity
+         
                     )
                     orderitem.save()
                 except Products.DoesNotExist:
@@ -81,6 +82,7 @@ def checkout(request):
             'stripe_public_key': stripe_public_key,
             'current_cart': current_cart,
             'client_secret': intent.client_secret,
+            
         }
 
         if coupon:
