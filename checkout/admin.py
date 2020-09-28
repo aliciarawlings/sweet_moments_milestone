@@ -2,22 +2,19 @@ from django.contrib import admin
 from .models import Order, OrderItem
 
 
-class OrderItemAdmin(admin.TabularInline):
+class OrderItemAdminInline(admin.TabularInline):
     model = OrderItem
-    readonly_fields = ('order_item_total')
-
+    readonly_fields = ('order_item_total',)
+    
 
 class OrderAdmin(admin.ModelAdmin):
-    order_inline = (OrderItemAdmin)
-    order_info = ('order_number',
-                  'date', 'delivery_cost',
-                 'order_total', 'grand_total',
-                 )
+    inlines = (OrderItemAdminInline,)
+    readonly_fields = ('order_number','date',
+                'order_total')
 
 
 list_display =('order_number',
- 'date', 'fullname',
-  'grand_total')
+ 'date', 'fullname')
 
 
 ordering = ('-date',)
