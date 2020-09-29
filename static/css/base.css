@@ -86,17 +86,16 @@ body {
     top:0;
     left:0;
     width:100%;
-    /*background:#f78487;*/
     position:fixed;
 }
 
 
-.loading_display {
-    display:flex;
-    align-items:center;
+.loading_spinner{
+   	display: flex;
+    align-items: center;
     justify-content: center;
-    margin:0;
-    height:100%;
+    margin: 0;
+    height: 100%;
 }
 
 .profile_container{

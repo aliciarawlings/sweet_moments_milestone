@@ -19,9 +19,10 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        print(stripe.api_key)
         stripe.PaymentIntent.modify(pid, metadata={
             'username': request.user,
-            'cart':json.dumps(request.session.get('cart'))
+            'cart': json.dumps(request.session.get('cart'))
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -48,7 +49,7 @@ def checkout(request):
             'country': request.POST['country'],
             'county' : request.POST['county'],
             'telephone': request.POST['telephone'],
-            'coupon': request.POST['coupon']
+            
         }
         order_form = OrderForm(form_info)
         if order_form.is_valid():
@@ -57,6 +58,7 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
             order.save()
+            
             for (item_id, weight, quantity) in cart: #iterate to create each bag item
                 try:
                     products = get_object_or_404(Products, pk=item_id)
@@ -82,9 +84,9 @@ def checkout(request):
         if not cart:
             messages.error(request, "oops your bag is empty")
             return redirect(reverse('products'))
-
+            
         total = current_cart['total']
-        stripe_total = round(total * 100) # stripe requires amount to charge integer
+        stripe_total = round(total * 100) # striperequires amount to beinteger
         stripe.api_key = stripe_secret_key   # set secret key on stripe
         intent = stripe.PaymentIntent.create(   #create payment intent
             amount=stripe_total,
@@ -103,13 +105,19 @@ def checkout(request):
             'stripe_public_key': stripe_public_key,
             'current_cart': current_cart,
             'client_secret': intent.client_secret,
-            
         }
 
         if coupon:
             context['discount'] = coupon['discount']
             context['discountedTotal'] = total - context['discount']
-
+            stripe_total = round(total * 100) # striperequires amount integer
+            stripe.api_key = stripe_secret_key   # set secret key on stripe
+            intent = stripe.PaymentIntent.create(   #create payment intent
+                amount=stripe_total,
+                currency=settings.STRIPE_CURRENCY,
+                payment_method_types=['card'],
+        )
+     
         return render(request, template, context)
         
     
@@ -122,10 +130,8 @@ def checkout_success(request, order_number):
     
     template = 'checkout/checkout_success.html'
     context = {
-        order: order,
-
+        'order': order,
     }
 
     return render(request, template, context)
-
 

@@ -18,31 +18,45 @@
 <div class="overlay"></div>
 <div class="container">
 <article class ="card">
-<header class="card-header"> Thank You For You Order </header>
-{% for item in order.orderitems.all %}
+<header class="card-header lead "> Thank You For You Order </header>
+
 <div class="card-body">
-<h6>{{item.order_number}}</h6>
+<h5><strong>Order Number:</strong></h5>
+<h6>{{order.order_number}}</h6>
 <article class="card">
     <div class="card-body row">
-    {{item.order_date}}
-    {{item.product}}
-
-    {{order.first_name}}
-    {{order.second_name}
-    {{order.address_1}}
-
+    
+    <ul>
+   
+    <li><h6>Date of Order: {{order.date}}</h6></li>
+    {% for item in order.orderitems.all %}
+  <li><strong>Products Ordered:</strong>  {{item.products.name}}</li>
+  <li><strong>Product Count:</strong>{{item.quantity}}</li>
+  <li><strong>Total:</strong>{{item.products.price}}</li>
+  <hr>
+  {% endfor %}
+  <hr>
+  <h3>Delivery Details</h3>
+   <li><strong>Address line 1:</strong> {{order.address_1}}</li>
+   <li><strong>Address Line 2:</strong> {{order.address_2}}</li>
+   
+<hr>
+   <h3>Personal Information</h3>
+   <li><strong>First Name:</strong>{{order.first_name}}</li>
+    <li><strong>Second Name:</strong>{{order.second_name}}</li>
+    <li><strong>Email :</strong>{{order.email}}</li>
+    
+    <hr>
+    <h3>Amout Paid</h3>
+    {{total|floatformat:2}}
+    {{subtotal|floatformat:2}}
+    </ul>
     
     </div>
-    {% endfor %}
+    
 </article>
 </div>
-<div id="loading_payment">
-    <h1 class="loading_display">
-    <span class="icon">
-          <i class="fas fa-spinner fa-pulse"></i>
-    </span>
-    </h1>
-    </div>
+
 
 
 </div>

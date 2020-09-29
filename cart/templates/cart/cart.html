@@ -80,9 +80,10 @@
                                      £{{ item.subtotal|floatformat:2 }}
                                 </td>
                             </tr>
-                            </div>
+
+                         
                         {% endfor %}
-                    </div>      
+                      
                     </div>  
                 </div>
                     <tr>
@@ -98,15 +99,15 @@
                             </a>
                         </td>
                     </tr> 
-                    </tbody>
-                </table>
+                   </tbody>
+                         </table>
             </div>
+            
         {% else %}
             <p class="lead">Your bag is empty </p>
             <a href="{% url 'products'%}" class="btn  btn-outline-dark btn-lg">Return To Shopping</a>
         {% endif %}   
-    </div>
- </div>
+
 
 
 

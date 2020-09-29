@@ -32,7 +32,7 @@ def update_cart(request, selected_item_id):
     else:
         messages.success(request,  "Item Added To Your Cart!")
         cart.append((selected_item_id, weight, quantity))
-
+    
     request.session['cart'] = cart
    
     if redirect_url:
