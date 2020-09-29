@@ -36,7 +36,7 @@
     <title>Sweet Moments {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top">
+    <header class="container-fullwidth fixed-top">
      <nav class="navbar navbar-expand-sm navbar-light bg-light">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,10 +71,12 @@
 
     <div class ="d-flex justify-content-center">
   <form method="GET" action="{% url 'products' %}" class="form-inline my-2 my-lg-0">
-  <div class = "input-group w-100 d-none d-md-block d-xl-none ">
-      <input class="form-control mr-sm-2 text-al" type="search" placeholder="Search" aria-label="Search" name="q">
+  <div class ="input-group">
+  <div class="d-none d-sm-block">
+      <input class="form-control text-al" type="search" placeholder="Search" aria-label="Search" name="q"> </div>
       <div class="input-group-append">
-      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-secondary my-2 my-sm-0 d-none d-sm-block" type="submit">Search</button>
+     
       </div>
     </div>
     </form>
