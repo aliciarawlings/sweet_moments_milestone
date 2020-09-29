@@ -2,21 +2,30 @@
 {% load static %}
 
 
-
-
 {% block page_header %}
 <div class="overlay"></div>
-<div class="container">
+<div class="container mt-5">
 	<div class="row">
 		<div class="col">
-        <h2 class="profile_container">My Profile:
-        {{user.userpage.user}}</h2>
+        <h2 class="profile_container lead ">Account Information:
+        {{user.username}}</h2>
 		</div>
 	</div>
 </div>
 {% endblock %}
 
 {% block content %}
+<ul class="nav nav-pills nav-fill">
+<li class="active nav-item pill-1">
+<a data-toggle="tab" href="#info" class="text-white"><h4>Delivery Info</h4></a>
+</li>
+<li class="nav-item pill-2">
+<a data-toggle="tab" href="#history" class="text-white"><h4>Order History</h4></a>
+</li>
+</ul>
+
+<div class="tab-content">
+<div id="info" class="tab-pane active">
 <div class="container profile_container border  border-secondary">
     <div class="row">
         <div class="col-12 col-lg-6">
@@ -26,23 +35,21 @@
 
                     {{form|crispy}}
                 <button class="btn btn-secondary float-right">Update Information</button>
-        
-                Order History
-
-                <ul class="float-left">
-                {{user.userpage.user}}
-                {{user.userpage.orders}}
-                </ul>
             </form>
         </div>
-        {% for order in orders %}
-        <ul>
-            Order ID: {{ order.order_number }}
-                {{order.date}}
-        </ul>
+<div id="history" class="tab-pane fade">
+    <h3>Order History</h3>
+     {% for order in orders %}
+        <ul class="border">
+          <li>  Order ID:<i> {{ order.order_number }}</i> </li>
+            <li> Date Of Order: <i>{{order.date}}</i></li>
+            <li>Address Line One:<i>{{order.address_1}}</i></li>
+            <li> Address Line Two:<i>{{order.address_2}}</i></li>
+          </ul>
         {% endfor %}
-    </div>
 </div>
+    </div>
+
 
 
 {% endblock %}

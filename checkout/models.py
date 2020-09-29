@@ -21,23 +21,8 @@ class Order(models.Model):
     address_1 = models.CharField(max_length=300, null=False, blank=False)
     address_2 = models.CharField(max_length=300, null=False, blank=False)
     date = models.DateField(auto_now_add=True)
-    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    grand_total = models.DecimalField(editable=False, max_digits=10, decimal_places=2, null= False, default=0)
     original_cart = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
-
- #def calculate_total(self):
-  #      self.grand_total = self.orderitems.aggregate(Sum('order_item_total'))['order_item_total__sum'] or 0
-   #     self.order_total = self.grand_total
-    #    self.save()
-
- #def save(self, *args, **kwargs):
-  #      if not self.order_number:
-   #         self.order_number = uuid.uuid4()
-    #    super().save(*args, **kwargs)
-
- #def __str__(self):
-      #  return self.order_number
 
 
 class OrderItem(models.Model):

@@ -10,7 +10,7 @@ class OrderItemAdminInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderItemAdminInline,)
     readonly_fields = ('order_number','date',
-                'order_total', 'original_cart', 
+                'original_cart', 
                 'stripe_pid')
     
     list_display =('order_number',

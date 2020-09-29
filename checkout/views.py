@@ -37,6 +37,10 @@ def checkout(request):
     cart = request.session.get('cart', {})
     current_cart = cart_items(request)
     coupon = request.session.get('coupon', None)
+    print(request.user.is_anonymous)
+    if request.user.is_anonymous:
+        
+        return redirect('account_signup')
 
     if request.method == 'POST':
         cart = request.session.get('cart', {})
@@ -111,13 +115,6 @@ def checkout(request):
         if coupon:
             context['discount'] = coupon['discount']
             context['discountedTotal'] = total - context['discount']
-            stripe_total = round(total * 100) # striperequires amount integer
-            stripe.api_key = stripe_secret_key   # set secret key on stripe
-            intent = stripe.PaymentIntent.create(   #create payment intent
-                amount=stripe_total,
-                currency=settings.STRIPE_CURRENCY,
-                payment_method_types=['card'],
-            )
         return render(request, template, context)
 
 
