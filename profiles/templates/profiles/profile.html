@@ -9,7 +9,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-        <h2 class="profile_container">My Profile</h2>
+        <h2 class="profile_container">My Profile:
+        {{user.userpage.user}}</h2>
 		</div>
 	</div>
 </div>
@@ -17,23 +18,32 @@
 
 {% block content %}
 <div class="container profile_container border  border-secondary">
-<div class="row">
-    <div class="col-12 col-lg-6">
-        <p> Delivery Information </p>
-        <form class="mt-3" action ="{% url 'profile'%}" method="POST" id="update_profile_form">
-        {% csrf_token %}
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <p> Delivery Information </p>
+            <form class="mt-3" action ="{% url 'profile'%}" method="POST" id="update_profile_form">
+                {% csrf_token %}
 
-        {{form|crispy}}
-        <button class="btn btn-secondary float-right">Update Information</button>
-        </form>
-    </div>
-    <div class="col-12 col-lg-6">
-    
-        <p>Default Delivery Information</p>
-        {{orders}}
+                    {{form|crispy}}
+                <button class="btn btn-secondary float-right">Update Information</button>
+        
+                Order History
+
+                <ul class="float-left">
+                {{user.userpage.user}}
+                {{user.userpage.orders}}
+                </ul>
+            </form>
+        </div>
+        {% for order in orders %}
+        <ul>
+            Order ID: {{ order.order_number }}
+                {{order.date}}
+        </ul>
+        {% endfor %}
     </div>
 </div>
-</div>
+
 
 {% endblock %}
 

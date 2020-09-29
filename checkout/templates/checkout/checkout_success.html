@@ -33,23 +33,26 @@
   <li><strong>Products Ordered:</strong>  {{item.products.name}}</li>
   <li><strong>Product Count:</strong>{{item.quantity}}</li>
   <li><strong>Total:</strong>{{item.products.price}}</li>
+   
   <hr>
   {% endfor %}
   <hr>
   <h3>Delivery Details</h3>
    <li><strong>Address line 1:</strong> {{order.address_1}}</li>
    <li><strong>Address Line 2:</strong> {{order.address_2}}</li>
-   
+   <li><strong>Country:</strong> {{order.country}}</li>
+   <li><strong>County:</strong> {{order.county}}</li>
+
 <hr>
    <h3>Personal Information</h3>
    <li><strong>First Name:</strong>{{order.first_name}}</li>
     <li><strong>Second Name:</strong>{{order.second_name}}</li>
     <li><strong>Email :</strong>{{order.email}}</li>
+      <li><strong>Telephone :</strong>{{order.telephone}}</li>
     
     <hr>
-    <h3>Amout Paid</h3>
-    {{total|floatformat:2}}
-    {{subtotal|floatformat:2}}
+    <h3>Amount Paid</h3>
+    
     </ul>
     
     </div>
@@ -59,7 +62,7 @@
 
 
 
-</div>
+
     
 
  

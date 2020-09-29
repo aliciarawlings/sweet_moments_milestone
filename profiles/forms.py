@@ -11,12 +11,11 @@ class UserProfileForm(forms.ModelForm):
 def __init__(self, *args, **kwargs):
     super().__init__(*args, **kwargs)
     placeholders = {
-    'profile_email': profile_email ,
-    'profile_telephone': profile_telephone,
-    'profile_country' :profile_country,
-    'profile_county': profile_county ,
-    'profile_address_1 ': profile_address_1 ,
-    'profile_address_2': profile_address_2,
+    'primary_telephone': 'telephone',
+    'primary_country': 'country',
+    'primary_county': 'county' ,
+    'primary_address_1': 'address_1 ',
+    'primary_address_2':'address_2',
 
     }
     set.fields['profile_telephone'].widget.attrs['autofocus'] = True

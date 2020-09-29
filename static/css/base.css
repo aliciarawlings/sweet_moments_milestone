@@ -81,16 +81,17 @@ body {
     background-color: red;
 }
 
-#loading_payment {
-    z-index :9999;
+#payment-overlay {
+    z-index: 9999;
     top:0;
     left:0;
     width:100%;
+    background: rgba(23, 162, 184, .85);
     position:fixed;
 }
 
 
-.loading_spinner{
+.spinner{
    	display: flex;
     align-items: center;
     justify-content: center;
@@ -106,3 +107,12 @@ body {
    
 
 }
+
+
+.allauth-form-inner-content p {
+    text-align: left;
+    margin-top:10;
+    
+    
+}
+

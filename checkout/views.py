@@ -5,14 +5,15 @@ from django.contrib import messages
 from django.conf import settings
 
 from .forms import OrderForm
-from coupons.models import Coupon
 from cart.contexts import cart_items
 from products.models import Products
 from .models import OrderItem, Order
-
-
+from profiles.forms import UserProfileForm
+from profiles.models import UserPage
+from django.contrib.auth.models import User
 import stripe
 import json
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -47,26 +48,26 @@ def checkout(request):
             'address_1': request.POST['address_1'],
             'address_2': request.POST['address_2'],
             'country': request.POST['country'],
-            'county' : request.POST['county'],
+            'county': request.POST['county'],
             'telephone': request.POST['telephone'],
-            
         }
         order_form = OrderForm(form_info)
         if order_form.is_valid():
+            user = User.objects.get(username=request.user)
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
+            order.buyer = user
             order.save()
-            
-            for (item_id, weight, quantity) in cart: #iterate to create each bag item
+            # iterate to create each bag item
+            for (item_id, weight, quantity) in cart:
                 try:
                     products = get_object_or_404(Products, pk=item_id)
                     orderitem = OrderItem(
                         order=order,
                         products=products,
                         quantity=quantity
-         
                     )
                     orderitem.save()
                 except Products.DoesNotExist:
@@ -81,19 +82,19 @@ def checkout(request):
             print(order_form.errors)
             return redirect(reverse('cart'))
     else:
+
         if not cart:
             messages.error(request, "oops your bag is empty")
             return redirect(reverse('products'))
-            
         total = current_cart['total']
-        stripe_total = round(total * 100) # striperequires amount to beinteger
+        stripe_total = round(total * 100)  # striperequires amount to beinteger
         stripe.api_key = stripe_secret_key   # set secret key on stripe
-        intent = stripe.PaymentIntent.create(   #create payment intent
+        intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
             payment_method_types=['card'],
-        )
-        
+        )  # create payment intent
+
         order_form = OrderForm()
         if not stripe_public_key:
             messages.warning(request, 'Stripe Public key is missing ')
@@ -116,22 +117,28 @@ def checkout(request):
                 amount=stripe_total,
                 currency=settings.STRIPE_CURRENCY,
                 payment_method_types=['card'],
-        )
-     
+            )
         return render(request, template, context)
-        
-    
+
+
 def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
+    if request.user.is_authenticated:
+        profile = UserPage.objects.get(user=request.user)
+        order.user_page = profile
+        order.save()
+        user_page_form = UserProfileForm(instance=profile)
+        if user_page_form.is_valid():
+            user_page_form.save()
+
     messages.success(request, f'Yipee! Order accepted!, Your order number is {order_number}')
 
     if 'cart' in request.session:
         del request.session['cart']
-    
+
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
     }
 
     return render(request, template, context)
-
