@@ -27,31 +27,38 @@
 				<table class="table table-hover table-sm">
 					<thead>
 						<tr>
-							<th scope="col">Product</th>
+							<th scope="col" class="d-none d-sm-block">Product</th>
+                            <th scope="col" class="d-block d-sm-none"></th>
+                            <th scope="col" class="text-right"></th>
 							<th scope="col" class="text-center">Remove</th>
 							<th scope="col" class="text-right">Quantity</th>
 							<th scope="col" class="text-center">Update</th>
 							<th scope="col" class="text-right">Weight</th>
 							<th scope="col" class="text-right">Price</th>
+                            	
 							<th scope="col" class="text-right">Subtotal</th>
 						</tr>
 					</thead>
+                    {% for item in items %}
 					<tbody>
-						{% for item in items %}
+						
 						<tr>
 							<td>
-								<img class="img-fluid cart-img-size" src="{{ item.product.image.url }}">
+								<img class=" d-none d-sm-block img-fluid cart-img-size" src="{{ item.product.image.url }}">
                                 </td>
 
 								<form class="form update-form" action="{% url 'update_cart' item.product.id %}"
 									method="POST">
 									{% csrf_token %}
-
+                                    
 								</form>
 								<form class="form update-form" action="{% url 'update_cart' item.product.id %}"
 									method="POST">
 									{% csrf_token %}
-
+                                <td>
+                               <i> {{item.product.name}}</i>
+                                </td>
+                            
 							<td class="text-center">
 								<button class="btn btn-sm btn-danger" type="submit" name="remove" value="1">
                                             <i class="fa fa-trash"></i>
@@ -83,27 +90,28 @@
 							</td>
 						</tr>
 					</tbody>
-
-					{% endfor %}
-            	</table>
-			</div>
-		</div>
+                      	 {% endfor %}
+		
+					
+          
 		<tr>
-			<td class="text-right">
+			<td colspan="5" class="text-right">
 				<a href="{% url 'products' %}" class="btn btn-outline-secondary rounded-0 btn-lg">
 					<span class="text-uppercase text-dark "><i class="fa fa-arrow-left" aria-hidden="true"></i>Keep Shopping</span>
 				</a>
 				<a href="{% url 'checkout' %}" class="btn btn-black btn-outline-secondary btn-lg  rounded-0 btn-lg">
 					<span class="text-uppercase text-dark ">Secure Checkout</span>
 					<span class="icon">
-                                    <i class="fas fa-lock"></i>
-                                </span>
+                       <i class="fas fa-lock"></i>
+                 </span>
 				</a>
 			</td>
 		</tr>
-
-	
+    </table>
 	</div>
+	</div>
+	</div>
+</div>
 
 	{% else %}
 	<p class="lead">Your bag is empty </p>
