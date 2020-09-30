@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib import messages
 from django.db.models import Q
 from .models import Products, Category
@@ -13,8 +14,8 @@ def all_products(request):
         if request.GET['category']:
             category = request.GET['category']
             products = products.filter(category__flavour=category)
-            categories = Category.objects.filter(flavour=category)		
-        elif request.GET['q']:
+            categories = Category.objects.filter(flavour=category)
+        elif['q'] in request.GET:
             query = request.GET['q']
             if not query:
                 messages.error(request, "oops! you didnt enter any search criteria")

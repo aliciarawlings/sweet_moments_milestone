@@ -142,15 +142,16 @@ WSGI_APPLICATION = 'sweet_moments.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 #DATABASES = {
-   # 'default':dj_database_url.parse('postgres://oqsfjnbrlckpfm:565ec29d775d2ac1905299d2c5f2866c86b2381d0d3b2c728371f625bdf5d9a5@ec2-3-248-4-172.eu-west-1.compute.amazonaws.com:5432/db5kvjv55rb6gu')
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.sqlite3',
+   #     'NAME': BASE_DIR / 'db.sqlite3',
+    #}
 #}
+
+DATABASES = {
+    'default':dj_database_url.parse('postgres://oqsfjnbrlckpfm:565ec29d775d2ac1905299d2c5f2866c86b2381d0d3b2c728371f625bdf5d9a5@ec2-3-248-4-172.eu-west-1.compute.amazonaws.com:5432/db5kvjv55rb6gu')
+}
 
 
 # Password validation
