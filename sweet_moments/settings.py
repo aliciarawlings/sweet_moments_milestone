@@ -149,6 +149,9 @@ WSGI_APPLICATION = 'sweet_moments.wsgi.application'
     #}
 #}
 
+DATABASES = {
+    'default': dj_database_url.parse("postgres://hxmlkqesmexuut:0b70175ffb6520398dc88e46b4614f2bd403a74ed6554cdd2663072805acd68a@ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/ddp4bqh9r56ie")
+}
 
 
 # Password validation
