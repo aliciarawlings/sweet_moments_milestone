@@ -3,14 +3,14 @@
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
-<div class="container allauth_forms">
+<div class="container allauth_forms ">
 
 <div class="row">
 
 <div class="col">
 
 {% block inside_content %}
-<h1 class="home_font">{% trans "Sign Up" %}</h1>
+<h1 class="home_font mt-5 text-center">{% trans "Sign Up" %}</h1>
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
