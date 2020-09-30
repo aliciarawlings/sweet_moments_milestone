@@ -32,7 +32,7 @@ The navbar is fixed so it provides fast navigation for the user no matter their 
 
 ## Mockup
 I used "Miro" to create a wireframe .
-![index](https://imgur.com/a/QXBeZK4.png)
+![index](https://ibb.co/cYy9W9G)
 ![products](https://imgur.com/a/GPZkagS.png)
 ![cart](https://imgur.com/a/ZVVa9YH.png)
 
