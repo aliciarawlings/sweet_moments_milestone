@@ -31,10 +31,10 @@ The design is very simplistic , yet colourful. As a sweet store the majority of 
 The navbar is fixed so it provides fast navigation for the user no matter their location on the site. 
 
 ## Mockup
-I used "Miro" to create a wireframe .
 ![index](https://i.ibb.co/cYy9W9G/sweethome.png)
 ![products](https://i.ibb.co/vX6ZvDQ/sweetproduct.png)
 ![cart](https://i.ibb.co/92cvsNw/sweetcart.png)
+I used "Miro" to create a wireframe .
 
 ## Features
 
@@ -93,7 +93,7 @@ The purchase functionality was tested manually on many different viewports and d
 At the checkout form, if any field is missing the user will not be able to submit the payment. The user is alerted about the required fields that must be filled. 
 
 Once the checkout form is filled and the user clicks "complete payment" , the page redirects with a thank you message, order numnber and order review. Please refer to the stripe events to see payment succeeded. 
-![stripe](https://imgur.com/a/LHzVGML.png)
+![stripe](https://i.ibb.co/8NwLQ5J/stripeproject.png)
 
 
 
