@@ -14,7 +14,6 @@ from django.contrib.auth.models import User
 import stripe
 import json
 
-
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -37,7 +36,7 @@ def checkout(request):
     cart = request.session.get('cart', {})
     current_cart = cart_items(request)
     coupon = request.session.get('coupon', None)
-    print(request.user.is_anonymous)
+    
     if request.user.is_anonymous:
         
         return redirect('account_signup')

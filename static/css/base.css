@@ -99,7 +99,7 @@ body {
     top:0;
     left:0;
     width:100%;
-    background: rgba(23, 162, 184, .85);
+    background-color:#f78487;
     position:fixed;
 }
 
@@ -112,27 +112,11 @@ body {
     height: 100%;
 }
 
-.profile_container{
-    text-align:left;
-    font-family:'Playfair Display', serif;
-    font-weight:600;
-    color:black;
-   
-
-}
 
 
-.allauth-form-inner-content p {
-    text-align: left;
-    margin-top:20px;
-}
-
-.allauth_forms{
-    margin-top: auto;
-    margin-bottom: auto;
-
-}
+/*----- profile page tab buttons----*/
 
 .nav-pills , .pill-1, .pill-2 {
     background-color:black;
 }
+
