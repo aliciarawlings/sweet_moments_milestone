@@ -49,7 +49,7 @@ SECRET_KEY = find_or_create_secret_key()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sweet-moments.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -142,16 +142,21 @@ WSGI_APPLICATION = 'sweet_moments.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
-   #     'NAME': BASE_DIR / 'db.sqlite3',
-    #}
-#}
 
-DATABASES = {
-    'default': dj_database_url.parse("postgres://hxmlkqesmexuut:0b70175ffb6520398dc88e46b4614f2bd403a74ed6554cdd2663072805acd68a@ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/ddp4bqh9r56ie")
-}
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+
 
 
 # Password validation
