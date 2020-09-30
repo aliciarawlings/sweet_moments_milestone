@@ -1,4 +1,5 @@
 # Sweet_moments_milestone
+click [here](https://sweet-moments.herokuapp.com/) for the deployed project. 
 Sweet Momens is my final milestone project. It is a Full-Stack Django Frameworks ecommerce store. Users can browse for vegan sweets and make an order , submit a payment via Stripe. All products and images were added through the Django admin dashboard. 
 
 Please note - to make a payment, you must make an order as a registered user and at the checkout form you can put in the card number 4242424242424242
