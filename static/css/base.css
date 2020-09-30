@@ -22,6 +22,8 @@ body {
     z-index:-1;
 }
 
+/*-------discount code styles in checkout and under nav ----*/
+
 .discount_display{
     width:100vw;
     background-color: white;
@@ -34,6 +36,15 @@ body {
 .code{
     color:#fa755a;
 }
+
+
+.discount{
+    background-color: red;
+}
+
+
+/*----Product image sizes----*/
+
 
 .img-size {
     width:300px;
@@ -55,9 +66,11 @@ body {
     height:150px;
 }
 
+
+/*-----font family home display ----*/
+
 .home_font{
     font-family: 'Playfair Display', serif;
-    font-weight:10px;
     color:#f78487;
 
 }
@@ -65,6 +78,10 @@ body {
 .nav-link{
   color:#f78487;!important;
   }
+
+
+
+  /*----Stripe card styling---*/
 
   .StripeElement {
   box-sizing: border-box;
@@ -90,27 +107,6 @@ body {
   background-color: #fefde5 !important;
 }
 
-.discount{
-    background-color: red;
-}
-
-#payment-overlay {
-    z-index: 9999;
-    top:0;
-    left:0;
-    width:100%;
-    background-color:#f78487;
-    position:fixed;
-}
-
-
-.spinner{
-   	display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    height: 100%;
-}
 
 
 

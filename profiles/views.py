@@ -2,8 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from .models import UserPage
 from .forms import UserProfileForm
-from cart.contexts import cart_items
-from checkout.models import Order
 from django.contrib.auth.models import User
 
 

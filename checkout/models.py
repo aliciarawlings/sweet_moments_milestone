@@ -21,7 +21,6 @@ class Order(models.Model):
     address_1 = models.CharField(max_length=300, null=False, blank=False)
     address_2 = models.CharField(max_length=300, null=False, blank=False)
     date = models.DateField(auto_now_add=True)
-    
     original_cart = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
